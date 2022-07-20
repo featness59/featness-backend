@@ -20,7 +20,7 @@ def create_user(request : schemas.Users, db: Session = Depends(get_db)):
     
     if user:
         print(user)
-        print("user exist deja")
+        print("user already exists")
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Email existing already') 
     
     # hashed_password = pwd_context.hash(request.hashed_password)

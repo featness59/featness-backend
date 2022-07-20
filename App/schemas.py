@@ -23,7 +23,7 @@ class Users(BaseModel):
     admin : bool = False  
     taille : str = Field(example= "170")
     poids : str = Field(example= "75")
-    localisation : str = Field(example='https://www.oiseaux.net/maps/images/accenteur.a.gorge.noire.1.200.w.png')
+    localisation : str = Field(example='Lille')
     sexe : str = Field(example="Homme")
     
     
