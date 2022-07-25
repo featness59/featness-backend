@@ -22,22 +22,19 @@ class Users(Base):
     weight = Column(String)    
     localisation = Column(String)    
     sex = Column(String)    
-    users = relationship("Exercises", secondary="association_table", back_populates="users")   
+    trainings = relationship("Trainings", secondary="link")     
     
-class Exercises(Base):
-    lg.info('Class Exercises')
-    __tablename__ = 'exercises'
+class Trainings(Base):
+    lg.info('Class Tranings')
+    __tablename__ = 'trainings'
     id = Column(Integer, primary_key=True, index=True)
-    exercice_type = Column(String)
+    training_type = Column(String)
     reps = Column(String)
     day = Column(String)
-    birds = relationship("Users", secondary="association_table", back_populates="exercises")   
+    users = relationship("Users", secondary="link") 
     
-class association_table(Base):
-    lg.info('Class Users')
-    __tablename__ = 'birds_users'
-    user_id = Column(Integer, ForeignKey('users.id'), primary_key=True)
-    exercises_id = Column(Integer, ForeignKey('exercises.id'), primary_key=True)
-    
-
-    
+class Link(Base):
+   __tablename__ = 'link'
+   user_id = Column(Integer, ForeignKey('users.id'), primary_key = True)
+   training_id = Column(Integer, ForeignKey('trainings.id'), primary_key = True)
+        

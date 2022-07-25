@@ -14,17 +14,26 @@ def get_confgi():
 class Users(BaseModel):
     lg.info('Class Users')
     id : int
-    identifiant : str
-    nom : str = Field(example="John")
-    prenom : str = Field(example="John")
+    identifiant : str = Field(example="948281938")
+    name : str = Field(example="John")
+    first_name : str = Field(example="John")
     email : str = Field(example="gsoulat31@gmail.com")
     hashed_password : str
-    password_lost : str = Field(example="Oh tu as perdu ton mot de passe ? c'est pas grave")
     admin : bool = False  
-    taille : str = Field(example= "170")
-    poids : str = Field(example= "75")
+    height : str = Field(example= "170")
+    weight : str = Field(example= "75")
     localisation : str = Field(example='Lille')
-    sexe : str = Field(example="Homme")
+    sex : str = Field(example="Homme")
+    
+    
+class Trainings(BaseModel):
+    lg.info('Class Trainings')
+    __tablename__ = 'Trainings'
+    id : int
+    exercice_type : str = Field(example ="Pushups")
+    reps : str = Field(example = "10")
+    day : str = Field(example = "1")
+    
     
     
 class UserLogin(BaseModel): 
@@ -44,6 +53,14 @@ class DisplayUsers(BaseModel):
     last_name : str
     username : str
     email : str
+    
+    class Config:
+        orm_mode = True
+        
+class DisplayTrainings(BaseModel):
+    training_type : str
+    reps: str
+    day : str
     
     class Config:
         orm_mode = True

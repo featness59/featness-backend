@@ -47,9 +47,9 @@ def update_user(id, request : schemas.Users, db: Session = Depends(get_db)):
        Update a json with one user 
     """
     users = db.query(models.Users).filter(models.Users.id == id)
-    if not user.first():
+    if not users.first():
         pass
-    user.update(request.dict())
+    users.update(request.dict())
     db.commit()    
     return {'User updated'}
 
