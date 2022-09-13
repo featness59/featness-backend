@@ -1,4 +1,4 @@
-# Welcome to Oizam-Api!
+# Welcome to Featness-Api!
 
 Hello this is our Api to get and post some description of bird
 The purpose of this **API** is to be us with ***Featness*** (Is an application python we can use for a app to android), so Featness-Api is the back end *our organisation Featness*
