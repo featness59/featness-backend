@@ -1,12 +1,7 @@
 # Welcome to Oizam-Api!
 
 Hello this is our Api to get and post some description of bird
-The purpose of this **API** is to be us with ***Oizam-Kivy*** (Is an application python we can use for a app to android), so Oizam-Api is the back end *our organisation Oizam*
-
-# Contents
-
-Inide we have a file is call OiseauxFini.csv, is't our database we upload our postgreSQL databate, We use the data from [oiseaux.net](https://www.oiseaux.net/)
-
+The purpose of this **API** is to be us with ***Featness*** (Is an application python we can use for a app to android), so Featness-Api is the back end *our organisation Featness*
 
 # instructions for launching it locally
 
@@ -14,7 +9,7 @@ In your favorite IDE,
 
  1°) start to clone the project :
 
-    https://github.com/Oizam/Oizam-api.git
+    https://github.com/featness59/featness-backend
 
  2°) You need to create an environment for python
 
@@ -36,7 +31,7 @@ In your favorite IDE,
 
 The database will be create and imported automatically
 
-if you dont want to Oizam-kivy, you use swagger and knows the route by this adress :
+if you dont want to Featness, you use swagger and knows the route by this adress :
 
     http://127.0.0.1:5000/docs
 
