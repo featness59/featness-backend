@@ -68,9 +68,7 @@ def add_training(request : schemas.Trainings, db: Session = Depends(get_db)):
     """_summary_
        Save a json with one training 
     """
-    hashed_password = pwd_context.hash(request.hashed_password)
-    new_training = models.Trainings(first_name=request.first_name, last_name=request.last_name, trainingname=request.trainingname, email=request.email, hashed_password=hashed_password, password_lost=request.password_lost,
-                           admin=request.admin)
+    new_training = models.Trainings(id=request.id, training_type=request.training_type, reps=request.reps, day=request.day)
     db.add(new_training)
     db.commit()
     db.refresh(new_training)
