@@ -59,8 +59,8 @@ def add_user(request : schemas.Users, db: Session = Depends(get_db)):
     """_summary_
        Save a json with one user 
     """
-    new_user = models.Users(name=request.name, first_name=request.first_name, email=request.email,hashed_password=request.hashed_password,admin=request.admin, height=request.height, weight=request.weight, localisation=request.localisation,
-                           sex=request.sex)
+    new_user = models.Users(name=request.name, first_name=request.first_name, email=request.email,hashed_password=request.hashed_password,admin=request.admin,
+                           )
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

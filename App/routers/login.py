@@ -25,7 +25,7 @@ def create_user(request : schemas.Users, db: Session = Depends(get_db)):
     
     # hashed_password = pwd_context.hash(request.hashed_password)
     new_User = models.Users(first_name=request.first_name, last_name=request.last_name, username=request.username, 
-                            email=request.email, hashed_password=request.hashed_password, password_lost=request.password_lost, admin=request.admin)
+                            email=request.email, hashed_password=request.hashed_password,  admin=request.admin)
     db.add(new_User)
     db.commit()
     db.refresh(new_User)
