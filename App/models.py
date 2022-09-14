@@ -1,7 +1,7 @@
 from enum import unique
 import logging as lg
 from typing import List
-from sqlalchemy import Column, Integer, String, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, ForeignKey, Table,Date
 from App.database import Base
 from sqlalchemy.orm import relationship
 
@@ -25,7 +25,7 @@ class Trainings(Base):
     id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     training_type = Column(String)
     reps = Column(String)
-    day = Column(String)
+    day = Culumn(Date)
     users = relationship("Users", secondary="link") 
     
 class Link(Base):
