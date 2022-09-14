@@ -25,7 +25,7 @@ class Trainings(Base):
     id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     training_type = Column(String)
     reps = Column(String)
-    day = Culumn(Date)
+    day = Column(Date)
     users = relationship("Users", secondary="link") 
     
 class Link(Base):
