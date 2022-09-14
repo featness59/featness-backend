@@ -27,7 +27,7 @@ class Trainings(BaseModel):
     id : int
     exercice_type : str = Field(example ="Pushups")
     reps : str = Field(example = "10")
-    day : str = Field(example = "1")
+    day : datetime
     
     
     
@@ -54,7 +54,7 @@ class DisplayUsers(BaseModel):
 class DisplayTrainings(BaseModel):
     training_type : str
     reps: str
-    day : str
+    day : datetime
     
     class Config:
         orm_mode = True
