@@ -8,18 +8,21 @@ from .. import schemas, models
 
 router = APIRouter(tags=['Users'], prefix="/users")
 
+
 @router.delete('/{id}')
-def user_delete_id(id, Authorize:AuthJWT=Depends(), db: Session = Depends(get_db)):
+def user_delete_id(id, Authorize: AuthJWT = Depends(), db: Session = Depends(get_db)):
     try:
         Authorize.jwt_required()
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Token")
-    
-    current_user=Authorize.get_jwt_subject()
-    db.query(models.Users).filter(models.Users.id == id).delete(synchronize_session=False)
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Token")
+
+    current_user = Authorize.get_jwt_subject()
+    db.query(models.Users).filter(models.Users.id ==
+                                  id).delete(synchronize_session=False)
     db.commit()
     return {'Users deleted': id}
-    
+
 
 @router.get('/')
 async def get_all_users(db: Session = Depends(get_db)):
@@ -42,7 +45,7 @@ async def get_one_user(id, db: Session = Depends(get_db)):
 
 
 @router.put('/{id}')
-def update_user(id, request : schemas.Users, db: Session = Depends(get_db)):
+def update_user(id, request: schemas.Users, db: Session = Depends(get_db)):
     """_summary_
        Update a json with one user 
     """
@@ -50,17 +53,17 @@ def update_user(id, request : schemas.Users, db: Session = Depends(get_db)):
     if not users.first():
         pass
     users.update(request.dict())
-    db.commit()    
+    db.commit()
     return {'User updated'}
 
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
-def add_user(request : schemas.Users, db: Session = Depends(get_db)):
+def add_user(request: schemas.Users, db: Session = Depends(get_db)):
     """_summary_
        Save a json with one user 
     """
-    new_user = models.Users(name=request.name, first_name=request.first_name, email=request.email,hashed_password=request.hashed_password,admin=request.admin,
-                           )
+    new_user = models.Users(name=request.name, first_name=request.first_name,
+                            email=request.email, hashed_password=request.hashed_password, admin=False)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
