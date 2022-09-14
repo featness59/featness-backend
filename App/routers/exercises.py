@@ -69,7 +69,7 @@ def add_user(request : schemas.Users, db: Session = Depends(get_db)):
        Save a json with one user 
     """
     hashed_password = pwd_context.hash(request.hashed_password)
-    new_User = models.Users(first_name=request.first_name, last_name=request.last_name, email=request.email, hashed_password=hashed_password, password_lost=request.password_lost,
+    new_User = models.Users(first_name=request.first_name, last_name=request.last_name, email=request.email, hashed_password=hashed_password,
                            admin=request.admin)
     db.add(new_User)
     db.commit()
