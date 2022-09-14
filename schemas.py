@@ -44,7 +44,6 @@ class UserLogin(BaseModel):
 class DisplayUsers(BaseModel):
     first_name : str 
     last_name : str
-    username : str
     email : str
     
     class Config:
