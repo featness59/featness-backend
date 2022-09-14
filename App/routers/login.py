@@ -24,7 +24,7 @@ def create_user(request : schemas.Users, db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Email already exists') 
     
     # hashed_password = pwd_context.hash(request.hashed_password)
-    new_User = models.Users(first_name=request.first_name, last_name=request.last_name, username=request.username, 
+    new_User = models.Users(first_name=request.first_name, last_name=request.last_name, 
                             email=request.email, hashed_password=request.hashed_password,  admin=request.admin)
     db.add(new_User)
     db.commit()
