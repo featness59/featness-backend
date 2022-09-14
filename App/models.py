@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship
 class Users(Base):
     lg.info('Class Users')
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     name = Column(String)
     first_name = Column(String)
     email = Column(String)    
@@ -22,7 +22,7 @@ class Users(Base):
 class Trainings(Base):
     lg.info('Class Tranings')
     __tablename__ = 'trainings'
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     training_type = Column(String)
     reps = Column(String)
     day = Column(String)
