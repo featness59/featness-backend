@@ -11,7 +11,7 @@ router = APIRouter(tags=['Users'], prefix="/user")
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 @router.delete('/{id}')
-def bird_delete(id, db: Session = Depends(get_db)):
+def user_delete(id, db: Session = Depends(get_db)):
     db.query(models.Users).filter(models.Users.id == id).delete(synchronize_session=False)
     db.commit()
     return {'Users Deleted'}
@@ -42,7 +42,7 @@ async def get_one_user_view(id, db: Session = Depends(get_db)):
     """_summary_
        Get a json with one user 
     """
-    user = db.query(models.Users).options(joinedload(models.Users.birds)).filter(models.Users.id == id).first()
+    user = db.query(models.Users).options(joinedload(models.Users.users)).filter(models.Users.id == id).first()
     if not user:
         raise HTTPException(status.HTTP_404_NOT_FOUND, detail='User not found')
     return user
@@ -57,10 +57,10 @@ def update_user(id, request : schemas.Users, db: Session = Depends(get_db)):
     if not user.first():
         pass
     if not user:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, detail='bird not found')
+        raise HTTPException(status.HTTP_404_NOT_FOUND, detail='user not found')
     user.update(request.dict())
     db.commit()    
-    return {'bird updated'}
+    return {'user updated'}
 
 
 @router.post('/', response_model=schemas.DisplayUsers ,status_code=status.HTTP_201_CREATED)
@@ -69,7 +69,7 @@ def add_user(request : schemas.Users, db: Session = Depends(get_db)):
        Save a json with one user 
     """
     hashed_password = pwd_context.hash(request.hashed_password)
-    new_User = models.Users(first_name=request.first_name, last_name=request.last_name, username=request.username, email=request.email, hashed_password=hashed_password, password_lost=request.password_lost,
+    new_User = models.Users(first_name=request.first_name, last_name=request.last_name, email=request.email, hashed_password=hashed_password, password_lost=request.password_lost,
                            admin=request.admin)
     db.add(new_User)
     db.commit()
