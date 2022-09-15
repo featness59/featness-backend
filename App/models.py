@@ -1,7 +1,7 @@
 from enum import unique
 import logging as lg
 from typing import List
-from sqlalchemy import Column, Integer, String, ForeignKey, Table,Date
+from sqlalchemy import Column, Integer, String, ForeignKey, Table, Date
 from App.database import Base
 from sqlalchemy.orm import relationship
 
