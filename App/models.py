@@ -10,24 +10,19 @@ from sqlalchemy.orm import relationship
 class Users(Base):
     lg.info('Class Users')
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     name = Column(String)
     first_name = Column(String)
     email = Column(String)    
     hashed_password = Column(String)    
     password_lost = Column(String)    
     admin = Column(String)    
-    height = Column(String)    
-    weight = Column(String)    
-    localisation = Column(String)    
-    sex = Column(String)    
     trainings = relationship("Trainings", secondary="link")     
     
 class Trainings(Base):
     lg.info('Class Tranings')
     __tablename__ = 'trainings'
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True,autoincrement=True, index=True)
     training_type = Column(String)
     reps = Column(String)
     day = Column(String)
